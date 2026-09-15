@@ -2,6 +2,7 @@ node_modules
 .pnpm-store
 dist
 .next
+.next-check
 out
 build
 storybook-static
