@@ -1,0 +1,37 @@
+{
+  "name": "@pipecraft/tokens",
+  "version": "0.1.0",
+  "description": "Design tokens (colors, spacing, typography, status system) for PipeCraft.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./css": "./dist/pipecraft.css",
+    "./tailwind-preset": {
+      "types": "./dist/tailwind-preset.d.ts",
+      "import": "./dist/tailwind-preset.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup src/index.ts src/tailwind-preset.ts --format esm --dts --clean && node scripts/copy-css.mjs",
+    "dev": "tsup src/index.ts src/tailwind-preset.ts --format esm --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo \"no lint configured\"",
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "@pipecraft/config": "workspace:*",
+    "rimraf": "^6.0.1",
+    "tailwindcss": "^3.4.13",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.3"
+  }
+}

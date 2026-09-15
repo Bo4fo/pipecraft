@@ -1,0 +1,39 @@
+@import "@pipecraft/tokens/css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--pc-bg-canvas);
+  color: var(--pc-fg-primary);
+}
+
+* {
+  border-color: var(--pc-border-default);
+}
+
+::selection {
+  background-color: var(--pc-accent-1);
+  color: var(--pc-accent-fg);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--pc-border-strong);
+  border-radius: 9999px;
+}

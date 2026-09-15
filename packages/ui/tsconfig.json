@@ -1,0 +1,9 @@
+{
+  "extends": "@pipecraft/config/tsconfig.react-library.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "types": ["@testing-library/jest-dom"]
+  },
+  "include": ["src"]
+}
