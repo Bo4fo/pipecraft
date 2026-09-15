@@ -245,3 +245,72 @@ export const incidentHistoryData = [
   { month: "Aug", incidents: 3 },
   { month: "Sep", incidents: 2 },
 ];
+
+export const buildsPerDayData = Array.from({ length: 7 }).map((_, i) => ({
+  day: new Date(Date.now() - (6 - i) * 86_400_000).toLocaleDateString("en-US", { weekday: "short" }),
+  builds: Math.max(3, Math.round(14 + Math.sin(i / 1.5) * 6)),
+}));
+
+// ---- Notifications ----
+
+export interface NotificationRecord {
+  id: string;
+  variant: "danger" | "success" | "info";
+  title: string;
+  detail: string;
+  time: string;
+  read: boolean;
+}
+
+export const notifications: NotificationRecord[] = [
+  { id: "n-1", variant: "danger", title: "Build failed", detail: "API Gateway #12 on develop", time: minutesAgo(10), read: false },
+  { id: "n-2", variant: "success", title: "Deployment succeeded", detail: "Mobile Release #7 shipped to production", time: minutesAgo(60), read: false },
+  { id: "n-3", variant: "info", title: "New comment", detail: "Priya Nair commented on Backend Oauth #1", time: minutesAgo(180), read: true },
+  { id: "n-4", variant: "info", title: "Pipeline optimized", detail: "Backend Oauth build time reduced by 5%", time: minutesAgo(60 * 24), read: true },
+  { id: "n-5", variant: "info", title: "Weekly report ready", detail: "PipeCraft Demo workspace summary", time: minutesAgo(60 * 48), read: true },
+];
+
+export const unreadNotificationCount = notifications.filter((n) => !n.read).length;
+
+// ---- Integrations ----
+
+export interface IntegrationRecord {
+  id: string;
+  name: string;
+  category: string;
+  connected: boolean;
+  detail: string;
+}
+
+export const integrations: IntegrationRecord[] = [
+  { id: "github", name: "GitHub", category: "Source control", connected: true, detail: "12 repositories linked" },
+  { id: "gitlab", name: "GitLab", category: "Source control", connected: false, detail: "Not connected" },
+  { id: "slack", name: "Slack", category: "Notifications", connected: true, detail: "Posting to #ci-cd" },
+  { id: "dockerhub", name: "Docker Hub", category: "Container registry", connected: false, detail: "Not connected" },
+  { id: "jira", name: "Jira", category: "Issue tracking", connected: true, detail: "Linked to OPS project" },
+  { id: "pagerduty", name: "PagerDuty", category: "Incident alerts", connected: false, detail: "Not connected" },
+];
+
+// ---- Team ----
+
+export interface TeamMemberRecord {
+  id: string;
+  name: string;
+  email: string;
+  role: "Owner" | "Admin" | "Member" | "Viewer";
+}
+
+export const teamMembers: TeamMemberRecord[] = [
+  { id: "t-1", name: "Ama Owusu", email: "ama@pipecraft.dev", role: "Owner" },
+  { id: "t-2", name: "Kwame Asante", email: "kwame@pipecraft.dev", role: "Admin" },
+  { id: "t-3", name: "Priya Nair", email: "priya@pipecraft.dev", role: "Member" },
+  { id: "t-4", name: "Marcus Lee", email: "marcus@pipecraft.dev", role: "Member" },
+  { id: "t-5", name: "Sofia Rossi", email: "sofia@pipecraft.dev", role: "Viewer" },
+];
+
+// ---- Analytics: highest failure rate ----
+
+export const topFailingPipelines = [
+  { name: "API Gateway", project: "Internal Tools", failRatePercent: 26 },
+  { name: "Data Pipeline ETL", project: "Internal Tools", failRatePercent: 12 },
+];

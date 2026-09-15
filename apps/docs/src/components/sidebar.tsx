@@ -5,15 +5,20 @@ import { usePathname } from "next/navigation";
 import {
   Activity,
   AlertTriangle,
+  BarChart3,
+  Bell,
   Boxes,
   GitBranch,
   LayoutDashboard,
+  Plug,
   Rocket,
   Server,
   Settings,
+  Users,
   Workflow,
 } from "lucide-react";
 import { cn } from "@pipecraft/ui";
+import { unreadNotificationCount } from "@/lib/mock-data";
 import { ThemeToggle } from "./theme-toggle";
 
 const navItems = [
@@ -24,6 +29,10 @@ const navItems = [
   { href: "/services", label: "Services", icon: Server },
   { href: "/monitoring", label: "Monitoring", icon: Activity },
   { href: "/incidents", label: "Incidents", icon: AlertTriangle },
+  { href: "/analytics", label: "Analytics", icon: BarChart3 },
+  { href: "/notifications", label: "Notifications", icon: Bell, badge: unreadNotificationCount },
+  { href: "/integrations", label: "Integrations", icon: Plug },
+  { href: "/team", label: "Team", icon: Users },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
 
@@ -56,14 +65,22 @@ export function Sidebar() {
               )}
             >
               <Icon className="size-4" />
-              {item.label}
+              <span className="flex-1">{item.label}</span>
+              {!!item.badge && (
+                <span className="flex size-4 items-center justify-center rounded-full bg-accent-1 text-[10px] font-semibold text-accent-fg">
+                  {item.badge}
+                </span>
+              )}
             </Link>
           );
         })}
       </nav>
-      <div className="border-t border-border-subtle p-3">
-        <Link href="/components" className="text-xs text-fg-tertiary hover:text-fg-accent">
+      <div className="space-y-2 border-t border-border-subtle p-3">
+        <Link href="/components" className="block text-xs text-fg-tertiary hover:text-fg-accent">
           Component docs &rarr;
+        </Link>
+        <Link href="/login" className="block text-xs text-fg-tertiary hover:text-fg-accent">
+          Log out
         </Link>
       </div>
     </aside>
